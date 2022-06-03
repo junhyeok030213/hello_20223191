@@ -23,7 +23,7 @@
 + b : Batch 모드로 작동
 + 1 : CPU Core별로 사용량 보여줌
 
-### `top -b -n 1`
+### `top -b -n 1` 
 
  <img width="670" alt="top 명령어 예시 사진" src="https://user-images.githubusercontent.com/106813806/171850590-c881c465-0d95-4777-b3a5-85a945faea0a.png">
 
