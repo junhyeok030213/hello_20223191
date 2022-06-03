@@ -77,7 +77,6 @@
 + T : Traced or Stopped. 보통의 시스템에서 자주 볼 수 없는 상태
 + Z : zombie. 부모 프로세스가 죽은 자식 프로세스
 
-
 ---
 
 # 리눅스 명령어 ps
@@ -132,3 +131,80 @@
 ![ps 명령어 예시 2](https://user-images.githubusercontent.com/106813806/171858015-61c96bcc-9866-4502-8d5e-c2ee78ecb3f6.PNG)
 
 ---
+
+# ps와 top의 차이점
+
++ ps는 **ps한 시점에 proc에서 검색한 cpu 사용량**
++ top은 **proc에서 일정 주기로 합산해 cpu 사용율 출력**
+
+---
+
+# 리눅스 명령어 jobs
+
+## jobs에 대하여
+
+### **jobs 명령어는** 직업의 상태를 표시하는 명령이다. 현재 쉘 세션에서 실행시킨 백그라운드 작업의 목록이 출력되며, 각 작업에는 번호가 붙어 있어 kill 명령어 뒤에 '%번호'등으로 사용할 수 있다.
+
+**`jobs[옵션][작업번호]`**
+
+## jobs 사용법
+
+### jobs로 출력되는 백그라운드 작업의 상태값
+
+|상태|설명|
+|:---:|:---:|
+|Running|작업이 계속 진행중임|
+|Done|작업이 완료되어 0을 반환|
+|Done(code)|작업이 종료되었으며 0이 아닌 코드를 반환|
+|Stopped|작업이 일시 중단|
+|Stopped(SIGTSTP)|SIGTSTP 시그널이 작업을 일시 중단|
+|Stopped(SIGSTOP)|SIGSTOP 시그널이 작업을 일시 중단|
+|Stopped(SIGTTIN)|SIGTTIN 시그널이 작업을 일시 중단|
+|Stopped(SIGTTOU)|SIGTTOU 시그널이 작업을 일시 중단|
+
+### 주요 옵션
+
+|옵션|설명|
+|:---:|:---:|
+|-l|프로세스 그룹 ID를 state필드 앞에 출력|
+|-n|프로세스 그룹 중에 대표 프로세스 ID를 출력|
+|-p|각 프로세스 ID에 대해 한 행씩 출력|
+|command|지정한 명령어를 실행|
+
+### 더 많은 옵션 알 수 있는 링크
+
+<https://hbase.tistory.com/242>
+
+---
+# 리눅스 명령어 kill
+
+## kill에 대해서
+
+### kill 명령어는 프로세스에 시그널을 보내는 명령어이다
+
+## kill 사용법
+
+### 1) kill 시그널 리스트 확인
+
+![klill 명령어 확인](https://user-images.githubusercontent.com/106813806/171863085-65e77ab3-2727-46b9-b134-b025bc709958.PNG)
+
+### 2) 주요 시그널
+
+|시그널|영어|설명|
+|:---:|:---:|:---:|
+|1) SIGHUP|Hang Up|세션이 종료될 때 시스템이 내리는 시그널|
+|2) SIGINT|Interrupt|Ctrl + C, 종료 요청 시그널|
+|9) SIGKILL|Kill|강제 종료 시그널|
+|11) SIGSEGV|Segment Violation|메모리 침범이 일어날 때 시스템이 보내는 시그널|
+|15) SIGTERM|Terminate|기본 값, 종료 요청 시그널|
+|20) SIGTSTP|Temporary Stop|Ctrl + Z 일시 중지 요청 시그널|
+
+### 3) 프로세스에 시그널 보내기
+
+```
+$ kill [option] PID
+
+# 1234(PID) 프로세스 종료 
+$ kill -9 1234
+$ kill -SIGKILL 1234
+```
